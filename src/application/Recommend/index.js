@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 // 引入 forceCheck 方法
 import { forceCheck } from 'react-lazyload';
 
-import Loading from '../../components/loading/index';
+import Loading from '../../baseUI/loading/index';
 
 // 映射Redux全局的state到组件路由的props
 const mapStateToProp=(state)=>({
