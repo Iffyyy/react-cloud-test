@@ -21,7 +21,7 @@ function App() {
         <GlobalStyle></GlobalStyle>
         <IconStyle></IconStyle>
         <Data>
-          { renderRoutes (routes) }
+          { renderRoutes(routes) }
         </Data>
         {/* <i className="iconfont">&#xe62b;</i> */}
         {/* {renderRoutes(routes)} */}
