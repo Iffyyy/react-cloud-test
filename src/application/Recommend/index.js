@@ -52,9 +52,10 @@ function Recommend(props) {
 				<Slider bannerList={bannerListJS}></Slider>
 				<RecommendList recommendList={recommendListJS}></RecommendList> 
 			</div>
-			{renderRoutes(route.routes)}
+			{/* {renderRoutes(route.routes)} */}
 		</Scroll>
-		{ enterLoading ? <Loading></Loading> : null }
+		{ enterLoading ? <Loading></Loading> : null }		
+		{ renderRoutes (props.route.routes) }
 	</Content>
 }
 

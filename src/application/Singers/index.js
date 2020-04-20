@@ -77,7 +77,6 @@ const mapDispatchToProps = (dispatch) => {
 
 // 渲染函数，返回歌手列表
 const renderSingerList = (singerList) => {
-  console.log(singerList)
   return (
     <List>
       {
@@ -100,7 +99,6 @@ const renderSingerList = (singerList) => {
 
 function Singers (props) {  
   const {singerList,updateDispatch,getHotSingerDispatch,pullUpRefreshDispatch,pageCount,pullDownRefreshDispatch,enterLoading,pullUpLoading,pullDownLoading}=props
-  console.log(props)
 	// let [category,setCategogy]=useState('')
   // let [alpha,setAlpha]=useState('')
   
@@ -108,7 +106,6 @@ function Singers (props) {
 // 将之前的 useState 代码删除
 const {data, dispatch} = useContext(CategoryDataContext);
 // 拿到 category 和 alpha 的值
-console.log(useContext(CategoryDataContext))
 const {category, alpha} = data.toJS();
   if(!singerList.length){
     

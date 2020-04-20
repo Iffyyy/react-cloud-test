@@ -9,4 +9,5 @@ export default combineReducers ({
   recommend:recommendReducer,
   singers: singersReducer,
   rank: rankReducer,
+  
 });

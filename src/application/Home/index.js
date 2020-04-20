@@ -9,7 +9,6 @@ import { NavLink } from 'react-router-dom';// 利用 NavLink 组件进行路由�
 
 
 function Home(props) {
-  console.log(props)
   const { route } = props;
   return (
     <div>
