@@ -22,8 +22,11 @@ import Loading from '../../baseUI/loading';
 import  LazyLoad, {forceCheck} from 'react-lazyload';
 
 import { CHANGE_CATEGORY,CHANGE_ALPHA,CategoryDataContext } from './data';
+import { renderRoutes } from 'react-router-config';
 
-
+// const enterSinger=(id) => {
+//   props.history.push(`/rank/${id}`)
+// }
 
 const mapStateToProps = (state) => ({
   singerList: state.getIn(['singers', 'singerList']),
@@ -76,13 +79,17 @@ const mapDispatchToProps = (dispatch) => {
 // }); 
 
 // 渲染函数，返回歌手列表
-const renderSingerList = (singerList) => {
+const renderSingerList = (props,singerList) => {
+
+  const enterDetail = (id)  => {
+    props.history.push(`/singers/${id}`);
+  };
   return (
     <List>
       {
         singerList.map ((item, index) => {
           return (
-            <ListItem key={item.accountId+""+index}>
+            <ListItem key={item.accountId+""+index} onClick={() => enterDetail(item.id)}>
               <div className="img_wrapper">
               <LazyLoad placeholder={<img width="100%" height="100%" src={require ('../../assets/music.png')} alt="music"/>}>
                 <img src={`${item.picUrl}?param=300x300`} width="100%" height="100%" alt="music"/>
@@ -103,18 +110,18 @@ function Singers (props) {
   // let [alpha,setAlpha]=useState('')
   
   // 首先需要引入 useContext
-// 将之前的 useState 代码删除
-const {data, dispatch} = useContext(CategoryDataContext);
-// 拿到 category 和 alpha 的值
-const {category, alpha} = data.toJS();
+  // 将之前的 useState 代码删除
+  const {data, dispatch} = useContext(CategoryDataContext);
+  // 拿到 category 和 alpha 的值
+  const {category, alpha} = data.toJS();
   if(!singerList.length){
     
   }
-	let handleUpdateAlpha=(val)=>{
+  let handleUpdateAlpha=(val)=>{
     dispatch ({type: CHANGE_ALPHA, data: val});
     updateDispatch(category, val);
-	}
-	let handleUpdateCategory=(val)=>{
+  }
+  let handleUpdateCategory=(val)=>{
     dispatch ({type: CHANGE_CATEGORY, data: val});
     updateDispatch(val, alpha);
   }
@@ -127,10 +134,11 @@ const {category, alpha} = data.toJS();
   };
 
   useEffect(()=>{
-		if(!singerList.length){
+    if(!singerList.length){
       getHotSingerDispatch()
     }
-	},[])
+  },[])
+
 
   return (
 		<div>
@@ -140,15 +148,16 @@ const {category, alpha} = data.toJS();
 			</NavContainer>
 			<ListContainer>
         { enterLoading ? <Loading></Loading> : null }
-				<Scroll  pullUp={ handlePullUp }
+				<Scroll pullUp={ handlePullUp }
           pullDown = { handlePullDown }
           pullUpLoading = { pullUpLoading }
           pullDownLoading = { pullDownLoading }
           onScroll={forceCheck}
         >
-          { renderSingerList(singerList) }
+          { renderSingerList(props,singerList) }
 				</Scroll>
 			</ListContainer>
+      { renderRoutes (props.route.routes) }
 		</div>
   )
 }

@@ -45,8 +45,6 @@ function Album (props) {
 
   let currentAlbum = currentAlbumImmutable.toJS ();
 
-
-
   const handleScroll = useCallback ((pos) => {
     let minScrollY = -HEADER_HEIGHT;
     let percent = Math.abs (pos.y/minScrollY);
