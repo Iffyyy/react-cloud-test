@@ -16,8 +16,8 @@ import { renderRoutes } from 'react-router-config';
 
 
 function Rank(props) {
-	const enterDetail = (detail) => {
-		props.history.push(`/rank/${detail.id}`)
+	const enterDetail = (id) => {
+		props.history.push(`/rank/${id}`)
 	}
   const { rankList: list, loading } = props;
   const { getRankListDataDispatch } = props;
@@ -29,8 +29,8 @@ function Rank(props) {
 	
 	let globalStartIndex=filterIndex(rankList)
 	let officialList=rankList.slice(0,globalStartIndex);
-	let globalList=rankList.slice(globalStartIndex)
-
+  let globalList=rankList.slice(globalStartIndex)
+  
 	// 这是渲染榜单列表函数，传入 global 变量来区分不同的布局方式
 const renderRankList = (list, global) => {
   return (
@@ -38,7 +38,7 @@ const renderRankList = (list, global) => {
       {
       list.map ((item) => {
         return (
-          <ListItem key={item.coverImgId} tracks={item.tracks} onClick={() => enterDetail (item.name)}>
+          <ListItem key={item.coverImgId} tracks={item.tracks} onClick={() => enterDetail(item.id)}>
             <div className="img_wrapper">
               <img src={item.coverImgUrl} alt=""/>
               <div className="decorate"></div>
